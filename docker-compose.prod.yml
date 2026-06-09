@@ -1,0 +1,13 @@
+# Production-like local build (no hot reload):
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      WATCHPACK_POLLING: ""
+      CHOKIDAR_USEPOLLING: ""
+    volumes: !reset []
+    healthcheck:
+      start_period: 30s
